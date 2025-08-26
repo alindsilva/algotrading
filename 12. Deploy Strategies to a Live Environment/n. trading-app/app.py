@@ -58,35 +58,52 @@ class IBApp(IBWrapper, IBClient):
 
     @property
     def cumulative_returns(self):
-        return ep.cum_returns(self.account_returns, 1)
+        return ep.cum_returns(self.portfolio_returns, 1)
 
     @property
     def max_drawdown(self):
-        return ep.max_drawdown(self.account_returns)
+        return ep.max_drawdown(self.portfolio_returns)
 
     @property
     def volatility(self):
-        return self.account_returns.std(ddof=1)
+        return self.portfolio_returns.std(ddof=1)
 
     @property
     def omega_ratio(self):
-        return ep.omega_ratio(self.account_returns, annualization=1)
+        return ep.omega_ratio(self.portfolio_returns, annualization=1)
 
     @property
     def sharpe_ratio(self):
-        return self.account_returns.mean() / self.account_returns.std(ddof=1)
+        return self.portfolio_returns.mean() / self.portfolio_returns.std(ddof=1)
 
     @property
     def cvar(self):
         net_liquidation = self.get_account_values("NetLiquidation")[0]
-        cvar_ = ep.conditional_value_at_risk(self.account_returns)
+        cvar_ = ep.conditional_value_at_risk(self.portfolio_returns)
         return (cvar_, cvar_ * net_liquidation)
 
 
 if __name__ == "__main__":
-    app = IBApp("127.0.0.1", 7497, client_id=11, account="DU7129120")
+    app = IBApp("127.0.0.1", 7497, client_id=11, account="DU8665110")
 
     aapl = stock("AAPL", "SMART", "USD")
+    mid = stock("MID","ARCA", "USD")
+    xlk = stock("XLK", "ARCA", "USD")
+    xlv = stock("XLV", "ARCA", "USD")
+    xly = stock("XLY", "ARCA", "USD")
+    xlu = stock("XLU", "ARCA", "USD")
+    xlf = stock("XLF", "ARCA", "USD")
+    xlb = stock("XLB", "ARCA", "USD")
+    xli = stock("XLI", "ARCA", "USD")
+    xlp = stock("XLP", "ARCA", "USD")
+    xlc = stock("XLC", "ARCA", "USD")
+    xle = stock("XLE", "ARCA", "USD")
+    xlre = stock("XLRE", "ARCA", "USD")
+    snow = stock("SNOW", "SMART", "USD")
+    ddog = stock("DDOG", "SMART", "USD")
+    crm = stock("CRM", "SMART", "USD")
+    eem = stock("EEM", "ARCA", "USD")
+    gld = stock("GLD", "ARCA", "USD")
 
     # market order value
     # app.order_value(aapl, market, 1000, action=BUY)
@@ -103,7 +120,18 @@ if __name__ == "__main__":
     # app.order_target_value(aapl, stop, 3000, stop_price=180.0)
 
     # market order target percent
-    app.order_target_percent(aapl, market, 0.5)
+    app.order_target_percent(xlk, market, 0.275)
+    app.order_target_percent(eem, market, 0.025)
+    app.order_target_percent(ddog, market, 0.015)
+    app.order_target_percent(xle, market, 0.05)
+    app.order_target_percent(gld, market, 0.256)
+    app.order_target_percent(mid, market, 0.1)
+    app.order_target_percent(xlb, market, 0.019)
+    
+    
+    app.order_target_percent(xlre, market, 0.023)
+    app.order_target_percent(xlv, market, 0.101)
+    app.order_target_percent(xlf, market, 0.136)
 
-    time.sleep(30)
+    time.sleep(15)
     app.disconnect()
