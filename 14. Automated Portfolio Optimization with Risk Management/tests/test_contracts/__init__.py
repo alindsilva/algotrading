@@ -1,0 +1,3 @@
+"""
+Contracts module tests.
+"""

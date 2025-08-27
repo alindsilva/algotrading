@@ -1,0 +1,46 @@
+# Interactive Brokers API
+ibapi>=10.19.1
+
+# Async database support
+aiosqlite>=0.19.0
+
+# Environment management for dotenv
+python-dotenv>=1.0.0
+
+# Data manipulation and analysis (compatible with openbb and vectorbtpro)
+pandas>=2.0.0
+numpy>=1.22.4,<2.0.0  # Compatible with openbb-* packages and pyportfolioopt
+
+# Configuration management
+pyyaml>=6.0
+
+# Type hints support (Python 3.8+)
+typing-extensions>=4.0.0
+
+# Development and testing dependencies
+pytest>=7.0.0
+pytest-asyncio>=0.21.0
+pytest-cov>=4.0.0
+black>=23.0.0
+flake8>=6.0.0
+mypy>=1.0.0
+coverage>=7.0.0
+
+# Testing utilities
+factory-boy>=3.2.0
+freezegun>=1.2.0
+responses>=0.23.0
+
+# Analytics and plotting (compatible versions)
+scipy>=1.10.0,<1.14.0  # Compatible with other packages
+matplotlib>=3.6.0
+seaborn>=0.12.0
+
+# Statistical functions
+statsmodels>=0.14.0
+
+# Performance optimization (compatible with vectorbtpro for Python 3.10)
+numba>=0.56.0,<0.57.0  # Compatible with vectorbtpro for Python 3.10
+
+# Note: vectorbtpro is already installed and should remain as is
+# Note: openbb packages are already installed with compatible versions

@@ -1,0 +1,56 @@
+# IBKR Trading Application Configuration
+# Copy this file and customize for your environment
+
+# IBKR Connection Settings
+host: "127.0.0.1"              # TWS/IB Gateway host
+port: 7496                     # TWS paper trading port (7496 for live trading)
+client_id: 99                   # Unique client ID
+connection_timeout: 30         # Connection timeout in seconds
+request_timeout: 10            # API request timeout in seconds
+
+# Reconnection Settings  
+max_reconnect_attempts: 5      # Maximum reconnection attempts
+reconnect_delay: 2.0           # Initial reconnection delay in seconds
+
+# Database Configuration
+database:
+  path: "data/trading_data.sqlite"  # SQLite database file path
+  pool_size: 5                      # Connection pool size
+  
+# Risk Management
+risk_free_rate: 0.02           # Annual risk-free rate (2%)
+max_position_size: 0.05        # Maximum position size as % of portfolio (5%)
+max_portfolio_beta: 1.5        # Maximum portfolio beta
+stop_loss_threshold: 0.02      # Stop loss threshold (2%)
+
+# Logging
+logging:
+  level: "INFO"                # Logging level (DEBUG, INFO, WARNING, ERROR)
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/ibkr_app.log"    # Log file path (optional)
+  max_file_size: 10485760      # Max log file size in bytes (10MB)
+  backup_count: 5              # Number of backup log files
+
+# Data Management
+data_retention_days: 365       # Days to keep historical data
+cleanup_interval_hours: 24     # Hours between data cleanup runs
+
+# Portfolio Analytics
+portfolio_update_interval: 300 # Seconds between portfolio updates (5 minutes)
+risk_metrics_window: 252       # Trading days for risk calculations (1 year)
+
+# Market Data
+market_data_subscriptions:     # Default symbols to stream (optional)
+  - "SPY"                      # SPDR S&P 500 ETF
+  - "QQQ"                      # Invesco QQQ ETF
+  - "IWM"                      # iShares Russell 2000 ETF
+  - "AAPL"                     # Apple Inc.
+  - "AXP"                      # American Express Company
+  - "FSLR"                     # First Solar, Inc.
+  - "GOOG"                     # Alphabet Inc.
+
+# Alerts and Notifications (placeholder for future implementation)
+alerts:
+  max_drawdown_threshold: 0.10   # Alert if drawdown exceeds 10%
+  volatility_threshold: 0.25     # Alert if volatility exceeds 25%
+  concentration_threshold: 0.20  # Alert if single position > 20%
